@@ -81,10 +81,14 @@ class UserController extends Controller
             ->paginate(3);
         return view('gallerysview', ['gallery' => $users]);
     }
-    // public function singleUser (string $id){
-    //     $gallery = DB::table('gallerys')->where('id',$id)->get();
-    //     return view('',[''=>$gallery]);
-    // }
+
+
+
+    public function singleUser (string $id){
+        $gallery = DB::table('gallerys')->where('id',$id)->get();
+        // dd($gallery);
+        return view('singleview',['data'=>$gallery]);
+    }
 
     public function deleteUser($id)
     {

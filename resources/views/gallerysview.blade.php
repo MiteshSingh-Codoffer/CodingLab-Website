@@ -36,7 +36,7 @@
 
                             </div>
                             <div class="d-flex justify-content-between  px-3 py-3 ">
-                                <a href="#" class="btn btn-primary">View</a>
+                                <a href="/singleview/{{$data->id}}" class="btn btn-primary">View</a>
                                 <a href="/updateview/{{$data->id}}" class="btn btn-secondary">Update</a>
                                 <a href="/gallery/delete/{{$data->id}}" class="btn btn-danger">Delete</a>
                             </div>

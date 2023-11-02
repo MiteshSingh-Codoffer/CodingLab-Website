@@ -107,4 +107,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/', function () {
         return view('welcome');
     });
+
+  // Basic or singleview page Route
+  Route::get('/singleview/{id}', [UserController::class, 'singleUser'])->name('singleUser');
+
+
 });
