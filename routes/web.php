@@ -111,5 +111,8 @@ Route::group(['middleware' => 'auth'], function () {
   // Basic or singleview page Route
   Route::get('/singleview/{id}', [UserController::class, 'singleUser'])->name('singleUser');
 
+   // Basic or  page Route
+   Route::get('/album', [UserController::class, 'albumUser'])->name('albumUser');
+
 
 });

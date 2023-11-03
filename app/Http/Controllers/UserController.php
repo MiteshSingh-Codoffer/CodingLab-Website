@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -168,5 +169,11 @@ class UserController extends Controller
         return redirect('/');
 
     }
+
+public function albumUser(){
+  $response = Http::get('https://picsum.photos/v2/list?page=2&limit=20');
+//  dd($response->collect());
+ return view('album',['image'=> $response->collect()]);
+}
 
 }
