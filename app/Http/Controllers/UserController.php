@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\PostCreated;
 use App\Models\Gallerys;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +39,7 @@ class UserController extends Controller
            // dd(Auth::attempt($request->only('email','password')));
              if (Auth::attempt($request->only('email','password'))) {
                 // Authentication was successful...
+                event(new PostCreated($request->email));
                 return redirect('/');
             }
             // return redirect('/signup')->withError('Error');
@@ -70,6 +73,9 @@ class UserController extends Controller
                 ]
 
             );
+            //dd($user);
+           // Post::create($user);
+//$user_data=['title'=>$user['title'],'name'=> $user['name'],'email'=> $user['email']];
 
         return redirect('/gallery');
     }
@@ -153,10 +159,12 @@ class UserController extends Controller
             'password' => 'required|min:5',
 
         ]);
+
         // Log the user in
 
         if (Auth::attempt($request->only('email','password'))) {
             // Authentication was successful...
+            event(new PostCreated($request->email));
             return redirect('/');
         }
         return redirect('signup')->withError('Error');
